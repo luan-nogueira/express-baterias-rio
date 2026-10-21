@@ -170,6 +170,20 @@
     }
 }
 
+/* hero: the shop's own facade photo, pushed far back behind navy */
+.hero-shop {
+    background-image: linear-gradient(rgb(10 20 56 / 0.9), rgb(10 20 56 / 0.94)), url("/img/2.webp");
+    background-size: cover;
+    background-position: center;
+}
+
+/* full-width light band behind a section whose box is capped at max-w-7xl */
+.band-gray {
+    background: #F4F5F7;
+    box-shadow: 0 0 0 100vmax #F4F5F7;
+    clip-path: inset(0 -100vmax);
+}
+
 /* yellow marker behind a word, like paint on the shop sign */
 .mark-paint {
     background: linear-gradient(transparent 60%, #FFB900 60%, #FFB900 92%, transparent 92%);

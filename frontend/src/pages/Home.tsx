@@ -66,19 +66,19 @@ export default function Home() {
       <link rel="canonical" href="https://expressbateriasrio.com.br/" />
 
       {/* HERO */}
-      <section className="bg-white" aria-labelledby="hero-title">
+      <section className="hero-shop bg-navy-900 text-white" aria-labelledby="hero-title">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 pb-14 pt-10 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-10 lg:pb-20 lg:pt-16">
           <div className="lg:col-span-7">
-            <p className="flex items-center gap-2.5 text-sm font-semibold text-slate-600" data-testid="hero-eyebrow">
+            <p className="flex items-center gap-2.5 text-sm font-semibold text-slate-300" data-testid="hero-eyebrow">
               <span className="size-2 rounded-full bg-wa" aria-hidden="true" />
               Atendimento imediato na Zona Sul e no Centro
             </p>
-            <h1 id="hero-title" className="mt-5 text-[38px] font-extrabold leading-[1.04] text-navy-900 sm:text-[54px] lg:text-[60px]" data-testid="hero-title">
-              Bateria arriou? A gente instala a nova <span className="mark-paint">onde o carro estiver.</span>
+            <h1 id="hero-title" className="mt-5 text-[38px] font-extrabold leading-[1.04] text-white sm:text-[54px] lg:text-[60px]" data-testid="hero-title">
+              Bateria arriou? A gente instala a nova <span className="text-amber-brand">onde o carro estiver.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600" data-testid="hero-subtitle">
-              Chegamos em até 30 minutos, com <strong className="font-semibold text-navy-900">entrega e instalação grátis</strong> e
-              parcelamento em <strong className="font-semibold text-navy-900">até 10x sem juros</strong>.
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300" data-testid="hero-subtitle">
+              Chegamos em até 30 minutos, com <strong className="font-semibold text-white">entrega e instalação grátis</strong> e
+              parcelamento em <strong className="font-semibold text-white">até 10x sem juros</strong>.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <WaButton message={WA_MESSAGES.emergency} testId="hero-whatsapp-button" size="lg">
@@ -87,15 +87,15 @@ export default function Home() {
               <Link
                 to="/encontre-sua-bateria"
                 data-testid="hero-finder-button"
-                className="group inline-flex h-14 items-center justify-center gap-2 rounded-md border-2 border-navy-900 px-6 font-semibold text-navy-900 transition-colors duration-200 hover:bg-navy-900 hover:text-white"
+                className="group inline-flex h-14 items-center justify-center gap-2 rounded-md border-2 border-white px-6 font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-navy-900"
               >
                 Encontrar a bateria do meu carro
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
               </Link>
             </div>
             <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <LocationButton variant="link" testId="hero-location-button" className="text-navy-700 hover:text-navy-900" />
-              <a href={PHONE_TEL} data-testid="hero-call-link" className="inline-flex items-center gap-2 text-sm font-semibold text-navy-700 transition-colors hover:text-navy-900">
+              <LocationButton variant="link" testId="hero-location-button" className="text-white hover:text-amber-brand" />
+              <a href={PHONE_TEL} data-testid="hero-call-link" className="inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-amber-brand">
                 <Phone className="size-4" aria-hidden="true" /> ou ligue {PHONE_DISPLAY}
               </a>
             </div>
@@ -118,12 +118,12 @@ export default function Home() {
           </figure>
         </div>
 
-        <div className="border-y border-border bg-secondary/50">
+        <div className="border-y border-white/10 bg-navy-800">
           <dl className="mx-auto grid max-w-7xl grid-cols-2 px-5 sm:px-8 lg:grid-cols-4" data-testid="hero-facts">
             {FACTS.map((f, i) => (
-              <div key={f.k} className={`py-6 pr-4 ${i % 2 === 1 ? "pl-4 sm:pl-6" : ""} ${i > 0 ? "lg:border-l lg:border-border lg:pl-6" : ""} ${i < 2 ? "border-b border-border lg:border-b-0" : ""}`}>
-                <dt className="font-heading text-xl font-bold text-navy-900 sm:text-2xl">{f.k}</dt>
-                <dd className="mt-1 text-sm text-slate-600">{f.v}</dd>
+              <div key={f.k} className={`py-6 pr-4 ${i % 2 === 1 ? "pl-4 sm:pl-6" : ""} ${i > 0 ? "lg:border-l lg:border-white/10 lg:pl-6" : ""} ${i < 2 ? "border-b border-white/10 lg:border-b-0" : ""}`}>
+                <dt className="font-heading text-xl font-bold text-amber-brand sm:text-2xl">{f.k}</dt>
+                <dd className="mt-1 text-sm text-slate-300">{f.v}</dd>
               </div>
             ))}
           </dl>
@@ -131,7 +131,7 @@ export default function Home() {
       </section>
 
       {/* FINDER */}
-      <section id="encontre" className="relative z-10 mx-auto -mt-0 max-w-7xl px-5 py-16 sm:px-8 sm:py-24" aria-labelledby="finder-title">
+      <section id="encontre" className="band-gray relative z-10 mx-auto -mt-0 max-w-7xl px-5 py-16 sm:px-8 sm:py-24" aria-labelledby="finder-title">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <h2 id="finder-title" className="text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
@@ -152,7 +152,7 @@ export default function Home() {
       </section>
 
       {/* SERVICES */}
-      <section id="servicos" className="border-t border-border bg-white" aria-labelledby="services-title">
+      <section id="servicos" className="bg-white" aria-labelledby="services-title">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-28">
@@ -242,7 +242,7 @@ export default function Home() {
       </section>
 
       {/* SERVICE AREA + QUOTE */}
-      <section id="atendimento" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28" aria-labelledby="area-title">
+      <section id="atendimento" className="band-gray mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28" aria-labelledby="area-title">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <h2 id="area-title" className="text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
@@ -282,7 +282,7 @@ export default function Home() {
       </section>
 
       {/* REVIEWS */}
-      <section id="avaliacoes" className="border-y border-border bg-secondary/60" aria-labelledby="reviews-title">
+      <section id="avaliacoes" className="bg-white" aria-labelledby="reviews-title">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
           <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -299,7 +299,7 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section id="duvidas" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28" aria-labelledby="faq-title">
+      <section id="duvidas" className="band-gray mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28" aria-labelledby="faq-title">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <h2 id="faq-title" className="text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">Antes de chamar</h2>
