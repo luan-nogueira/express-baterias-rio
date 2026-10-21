@@ -9,13 +9,17 @@ import { AdminLogin } from "@/components/admin/AdminLogin";
 import { QuotesPanel } from "@/components/admin/QuotesPanel";
 import { VehiclesPanel } from "@/components/admin/VehiclesPanel";
 import { BatteriesPanel } from "@/components/admin/BatteriesPanel";
+import { StorePanel } from "@/components/admin/StorePanel";
+import { ImportPanel } from "@/components/admin/ImportPanel";
 import { cn } from "@/lib/utils";
 
-type Tab = "quotes" | "vehicles" | "batteries";
+type Tab = "quotes" | "vehicles" | "batteries" | "import" | "store";
 const TABS: { key: Tab; label: string }[] = [
   { key: "quotes", label: "Pedidos de orçamento" },
   { key: "vehicles", label: "Veículos e aplicações" },
   { key: "batteries", label: "Baterias" },
+  { key: "import", label: "Importar planilha" },
+  { key: "store", label: "Dados da loja" },
 ];
 
 function Dashboard({ user }: { user: AdminUser }) {
@@ -51,7 +55,7 @@ function Dashboard({ user }: { user: AdminUser }) {
           <div className="mb-6 rounded-md border border-amber-300 bg-amber-50 p-4 text-sm text-amber-950" data-testid="admin-pending-banner">
             <strong>{pending} de {vehicles.data?.length} aplicações aguardam validação técnica.</strong> Elas aparecem no site com o aviso
             “aguardando validação”. Confira ano, motor, Start-Stop, polaridade e medidas e marque como validada em “Veículos e aplicações”.
-            Marcas, códigos reais, CCA, preço e estoque das baterias de referência (código REF-…) também precisam ser preenchidos.
+            Marcas, códigos reais, CCA, preço e estoque das baterias de referência (código REF-…) também precisam ser preenchidos — use “Importar planilha”.
           </div>
         )}
         <div role="tablist" className="mb-6 flex flex-wrap gap-1 border-b border-slate-300">
@@ -75,6 +79,8 @@ function Dashboard({ user }: { user: AdminUser }) {
         {tab === "quotes" && <QuotesPanel />}
         {tab === "vehicles" && <VehiclesPanel vehicles={vehicles.data ?? []} batteries={batteries.data ?? []} loading={vehicles.isLoading} />}
         {tab === "batteries" && <BatteriesPanel batteries={batteries.data ?? []} loading={batteries.isLoading} />}
+        {tab === "import" && <ImportPanel />}
+        {tab === "store" && <StorePanel />}
       </div>
     </div>
   );

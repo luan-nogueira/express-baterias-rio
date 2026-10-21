@@ -5,13 +5,16 @@ import type { Battery } from "@/lib/types";
 export function BatteryGraphic({ battery, className }: { battery: Battery; className?: string }) {
   if (battery.image_url) {
     return (
-      <img
-        src={battery.image_url}
-        alt={`Bateria ${battery.brand} ${battery.line} ${battery.ah}Ah`}
-        loading="lazy"
-        className={className}
-        data-testid="battery-product-image"
-      />
+      <figure className={className} data-testid="battery-product-photo">
+        <img
+          src={battery.image_url}
+          alt={`Bateria ${battery.brand} ${battery.line} ${battery.ah}Ah, código ${battery.code}`}
+          loading="lazy"
+          className="aspect-square w-full object-contain"
+          data-testid="battery-product-image"
+        />
+        <figcaption className="mt-2 text-center font-mono text-[10px] uppercase tracking-wider text-slate-500">Foto do produto</figcaption>
+      </figure>
     );
   }
   const plusRight = battery.polarity === "D";

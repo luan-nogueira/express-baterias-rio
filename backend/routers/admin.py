@@ -8,6 +8,7 @@ from lib.auth import require_admin
 from lib.db import db
 from models.catalog import Battery, BatteryIn, Vehicle, VehicleIn, vehicle_search_text
 from models.quote import Quote, QuoteStatusUpdate
+from routers.images import delete_image_by_url
 
 router = APIRouter(prefix="/admin", tags=["admin"], dependencies=[Depends(require_admin)])
 
@@ -41,9 +42,11 @@ async def update_battery(battery_id: str, body: BatteryIn):
 
 @router.delete("/batteries/{battery_id}")
 async def delete_battery(battery_id: str):
+    doc = await db.batteries.find_one({"id": battery_id}, {"image_url": 1})
     res = await db.batteries.delete_one({"id": battery_id})
     if res.deleted_count == 0:
         raise HTTPException(status_code=404, detail="Bateria não encontrada")
+    await delete_image_by_url((doc or {}).get("image_url"))
     await db.vehicles.update_many({}, {"$pull": {"battery_ids": battery_id}})
     return {"ok": True}
 

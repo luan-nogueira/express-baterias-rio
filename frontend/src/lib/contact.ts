@@ -20,7 +20,6 @@ export const WA_MESSAGES = {
 
 // Neighbourhoods listed on the current site's lead form.
 export const NEIGHBORHOODS = [
-  "Barra da Tijuca",
   "Botafogo",
   "Catete",
   "Centro",

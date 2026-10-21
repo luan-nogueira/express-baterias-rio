@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { SiInstagram, SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { MapPin, Phone } from "lucide-react";
+import { StoreDetails } from "@/components/site/StoreDetails";
 import {
   INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
@@ -21,6 +22,7 @@ export function SiteFooter() {
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-slate-400">
             Socorro e troca de bateria automotiva no Rio de Janeiro. Levamos a bateria até você e instalamos no local.
           </p>
+          <StoreDetails tone="dark" className="mt-6 max-w-xs" />
         </div>
 
         <div className="md:col-span-3">

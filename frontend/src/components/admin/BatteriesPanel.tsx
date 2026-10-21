@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { Pencil, Plus, Trash2 } from "lucide-react";
-import { apiDelete, apiPost, apiPut, ApiError } from "@/lib/api";
+import { Image as ImageIcon, Pencil, Plus, Trash2 } from "lucide-react";
+import { apiDelete, apiPost, apiPut, apiUpload, ApiError, errorDetail } from "@/lib/api";
 import type { Battery, BatteryIn, Polarity, Technology } from "@/lib/types";
 import { dimensions, formatBRL } from "@/lib/finder";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -47,6 +47,10 @@ export function BatteriesPanel({ batteries, loading }: { batteries: Battery[]; l
   const [editing, setEditing] = useState<Battery | null>(null);
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState<FormState>(EMPTY);
+  const [photo, setPhoto] = useState<File | null>(null);
+  const [removePhoto, setRemovePhoto] = useState(false);
+  const photoPreview = useMemo(() => (photo ? URL.createObjectURL(photo) : null), [photo]);
+  useEffect(() => () => { if (photoPreview) URL.revokeObjectURL(photoPreview); }, [photoPreview]);
 
   const invalidate = () => {
     qc.invalidateQueries({ queryKey: ["admin", "batteries"] });
@@ -54,13 +58,22 @@ export function BatteriesPanel({ batteries, loading }: { batteries: Battery[]; l
     qc.invalidateQueries({ queryKey: ["finder"] });
   };
   const save = useMutation({
-    mutationFn: (body: BatteryIn) => (editing ? apiPut<Battery>(`/admin/batteries/${editing.id}`, body) : apiPost<Battery>("/admin/batteries", body)),
+    mutationFn: async (body: BatteryIn) => {
+      const saved = editing ? await apiPut<Battery>(`/admin/batteries/${editing.id}`, body) : await apiPost<Battery>("/admin/batteries", body);
+      if (photo) {
+        const fd = new FormData();
+        fd.append("file", photo);
+        return apiUpload<Battery>(`/admin/batteries/${saved.id}/image`, fd);
+      }
+      if (removePhoto && editing?.image_url) return apiDelete<Battery>(`/admin/batteries/${saved.id}/image`);
+      return saved;
+    },
     onSuccess: () => {
       invalidate();
       setOpen(false);
       toast.success("Bateria salva");
     },
-    onError: (e) => toast.error(e instanceof ApiError && e.status === 409 ? "Código já cadastrado" : "Verifique os campos e tente novamente"),
+    onError: (e) => toast.error(e instanceof ApiError && e.status === 409 ? "Código já cadastrado" : errorDetail(e, "Verifique os campos e tente novamente")),
   });
   const remove = useMutation({
     mutationFn: (id: string) => apiDelete(`/admin/batteries/${id}`),
@@ -70,8 +83,9 @@ export function BatteriesPanel({ batteries, loading }: { batteries: Battery[]; l
     },
   });
 
-  const openNew = () => { setEditing(null); setForm(EMPTY); setOpen(true); };
-  const openEdit = (b: Battery) => { setEditing(b); setForm(toForm(b)); setOpen(true); };
+  const openNew = () => { setEditing(null); setForm(EMPTY); setPhoto(null); setRemovePhoto(false); setOpen(true); };
+  const openEdit = (b: Battery) => { setEditing(b); setForm(toForm(b)); setPhoto(null); setRemovePhoto(false); setOpen(true); };
+  const currentPhoto = photoPreview ?? (removePhoto ? null : editing?.image_url ?? null);
   const f = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => setForm((s) => ({ ...s, [k]: e.target.value }));
 
   const field = (k: keyof FormState, label: string, props: React.ComponentProps<"input"> = {}) => (
@@ -92,13 +106,20 @@ export function BatteriesPanel({ batteries, loading }: { batteries: Battery[]; l
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Código</TableHead><TableHead>Marca / linha</TableHead><TableHead>Ah</TableHead><TableHead>CCA</TableHead>
+                <TableHead className="w-14">Foto</TableHead><TableHead>Código</TableHead><TableHead>Marca / linha</TableHead><TableHead>Ah</TableHead><TableHead>CCA</TableHead>
                 <TableHead>Tecnologia</TableHead><TableHead>Polo +</TableHead><TableHead>Medidas</TableHead><TableHead>Preço</TableHead><TableHead className="text-right">Ações</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {batteries.map((b) => (
                 <TableRow key={b.id} data-testid={`admin-battery-row-${b.code}`}>
+                  <TableCell>
+                    {b.image_url ? (
+                      <img src={b.image_url} alt="" loading="lazy" className="size-10 rounded object-contain" data-testid={`admin-battery-thumb-${b.code}`} />
+                    ) : (
+                      <span className="flex size-10 items-center justify-center rounded bg-slate-100"><ImageIcon className="size-4 text-slate-300" aria-hidden="true" /></span>
+                    )}
+                  </TableCell>
                   <TableCell className="font-mono text-xs font-semibold">{b.code}</TableCell>
                   <TableCell>{b.brand}<span className="block text-xs text-slate-500">{b.line}</span></TableCell>
                   <TableCell className="font-mono">{b.ah}</TableCell>
@@ -157,7 +178,34 @@ export function BatteriesPanel({ batteries, loading }: { batteries: Battery[]; l
                 <option value="">Não informar</option><option value="sim">Em estoque</option><option value="nao">Sem estoque</option>
               </select>
             </div>
-            <div className="sm:col-span-3">{field("image_url", "URL da foto real do produto")}</div>
+            <div className="space-y-2 sm:col-span-3">
+              <Label htmlFor="bat-photo" className="text-xs">Foto real do produto</Label>
+              <div className="flex items-center gap-4">
+                <div className="flex size-24 shrink-0 items-center justify-center overflow-hidden rounded-md border border-border bg-slate-50">
+                  {currentPhoto ? (
+                    <img src={currentPhoto} alt="Prévia da foto" className="size-full object-contain" data-testid="battery-form-photo-preview" />
+                  ) : (
+                    <ImageIcon className="size-6 text-slate-300" aria-hidden="true" />
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <input
+                    id="bat-photo"
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => { setPhoto(e.target.files?.[0] ?? null); setRemovePhoto(false); }}
+                    className="block text-sm file:mr-3 file:rounded-md file:border-0 file:bg-navy-800 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white"
+                    data-testid="battery-form-photo-input"
+                  />
+                  {(editing?.image_url || photo) && !removePhoto && (
+                    <button type="button" onClick={() => { setPhoto(null); setRemovePhoto(true); }} className="text-xs font-medium text-red-600 hover:underline" data-testid="battery-form-photo-remove">
+                      Remover foto
+                    </button>
+                  )}
+                  <p className="text-xs text-slate-500">JPG, PNG ou WebP até 10 MB. Pode tirar a foto direto do celular.</p>
+                </div>
+              </div>
+            </div>
             <div className="sm:col-span-3">{field("notes", "Observações internas")}</div>
           </form>
           <DialogFooter>

@@ -72,3 +72,41 @@ export interface AdminUser {
   email: string;
   name: string;
 }
+
+// backend/models/store.py
+export type DayCode = "Mo" | "Tu" | "We" | "Th" | "Fr" | "Sa" | "Su";
+
+export interface HoursRule {
+  days: DayCode[];
+  opens: string;
+  closes: string;
+}
+
+export interface StoreInfo {
+  street_address: string;
+  neighborhood: string;
+  city: string;
+  state: string;
+  postal_code: string;
+  hours: HoursRule[];
+  hours_note: string;
+}
+
+export interface ImportRowError {
+  row: number;
+  message: string;
+}
+
+export interface ImportReport {
+  rows_read: number;
+  batteries_created: number;
+  batteries_updated: number;
+  vehicles_created: number;
+  vehicles_updated: number;
+  errors: ImportRowError[];
+}
+
+export interface ReferenceCleanup {
+  batteries_deleted: number;
+  vehicles_without_battery: number;
+}

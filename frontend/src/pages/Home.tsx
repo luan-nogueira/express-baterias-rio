@@ -8,6 +8,8 @@ import { BatteryFinder } from "@/components/finder/BatteryFinder";
 import { QuoteForm } from "@/components/site/QuoteForm";
 import { Reviews } from "@/components/site/Reviews";
 import { Faq } from "@/components/site/Faq";
+import { LocationButton } from "@/components/site/LocationButton";
+import { StoreDetails } from "@/components/site/StoreDetails";
 import { MAPS_URL, NEIGHBORHOODS, PHONE_DISPLAY, PHONE_TEL, WA_MESSAGES } from "@/lib/contact";
 
 const FACTS = [
@@ -68,7 +70,7 @@ export default function Home() {
       <title>Express Baterias Rio – Socorro e troca de bateria automotiva no Rio</title>
       <meta
         name="description"
-        content="Bateria arriou? Chegamos em até 30 minutos na Zona Sul, Centro e Barra da Tijuca. Entrega e instalação grátis, até 10x sem juros. Baterias para carro, moto e caminhão."
+        content="Bateria arriou? Chegamos em até 30 minutos na Zona Sul e no Centro. Entrega e instalação grátis, até 10x sem juros. Baterias para carro, moto e caminhão."
       />
 
       {/* HERO */}
@@ -81,7 +83,7 @@ export default function Home() {
                 <span className="absolute inline-flex size-full animate-ping rounded-full bg-wa opacity-60 motion-reduce:hidden" />
                 <span className="relative inline-flex size-2 rounded-full bg-wa" />
               </span>
-              Atendimento imediato · Zona Sul, Centro e Barra
+              Atendimento imediato · Zona Sul e Centro
             </p>
             <h1 id="hero-title" className="mt-6 text-[40px] font-extrabold leading-[1.04] tracking-tight sm:text-6xl lg:text-[68px]" data-testid="hero-title">
               Bateria arriou?
@@ -104,9 +106,12 @@ export default function Home() {
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
               </Link>
             </div>
-            <a href={PHONE_TEL} data-testid="hero-call-link" className="mt-5 inline-flex items-center gap-2 font-mono text-sm text-slate-300 transition-colors hover:text-white">
-              <Phone className="size-4" aria-hidden="true" /> ou ligue {PHONE_DISPLAY}
-            </a>
+            <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <LocationButton variant="link" testId="hero-location-button" />
+              <a href={PHONE_TEL} data-testid="hero-call-link" className="inline-flex items-center gap-2 font-mono text-sm text-slate-300 transition-colors hover:text-white">
+                <Phone className="size-4" aria-hidden="true" /> ou ligue {PHONE_DISPLAY}
+              </a>
+            </div>
           </div>
 
           <div className="relative lg:col-span-5">
@@ -267,7 +272,7 @@ export default function Home() {
               Nós vamos até você.
             </h2>
             <p className="mt-4 leading-relaxed text-slate-600">
-              Atendemos a Zona Sul, o Centro e a Barra da Tijuca. Diga o bairro e o veículo: a equipe responde no WhatsApp com
+              Atendemos a Zona Sul, o Centro e os bairros próximos. Diga o bairro e o veículo: a equipe responde no WhatsApp com
               a bateria, o valor e a previsão de chegada.
             </p>
             <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-2.5 text-[15px] text-navy-900 sm:grid-cols-3 lg:grid-cols-2" data-testid="area-neighborhoods">
@@ -278,6 +283,7 @@ export default function Home() {
               ))}
             </ul>
             <p className="mt-4 text-sm text-slate-500">Outro bairro? Consulte pelo WhatsApp.</p>
+            <StoreDetails className="mt-8" />
             <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" data-testid="area-maps-link" className="mt-8 inline-flex items-center gap-2 font-semibold text-navy-800 hover:text-navy-600">
               <MapPin className="size-4" aria-hidden="true" /> Ver nossa referência no Google Maps
             </a>
@@ -340,22 +346,15 @@ export default function Home() {
             Carro parado agora? Mande a localização que a gente vai.
           </h2>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <LocationButton testId="cta-location-button" />
             <WaButton
               message={WA_MESSAGES.emergency}
               testId="cta-whatsapp-button"
               size="lg"
-              className="bg-navy-900 text-white shadow-none hover:bg-navy-700 hover:shadow-[0_10px_30px_-12px_rgb(10_20_56/0.6)] [&_svg]:text-wa"
+              className="border-2 border-navy-900 bg-transparent text-navy-900 shadow-none hover:bg-navy-900 hover:text-white hover:shadow-none"
             >
               Chamar no WhatsApp
             </WaButton>
-            <a
-              href={PHONE_TEL}
-              data-testid="cta-call-button"
-              className="inline-flex h-14 items-center justify-center gap-2.5 rounded-md border-2 border-navy-900 px-6 font-semibold text-navy-900 transition-[background-color,color] duration-200 hover:bg-navy-900 hover:text-white"
-            >
-              <Phone className="size-5" aria-hidden="true" />
-              Ligar {PHONE_DISPLAY}
-            </a>
           </div>
         </div>
       </section>

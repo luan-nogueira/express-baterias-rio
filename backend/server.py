@@ -14,7 +14,7 @@ load_dotenv(ROOT_DIR / '.env')
 # MongoDB connection
 from lib.db import client, ensure_indexes
 from lib.auth import ensure_admin_user
-from routers import admin, auth, finder, quotes
+from routers import admin, auth, finder, images, importer, quotes, store
 
 
 @asynccontextmanager
@@ -39,6 +39,9 @@ api_router.include_router(auth.router)
 api_router.include_router(finder.router)
 api_router.include_router(quotes.router)
 api_router.include_router(admin.router)
+api_router.include_router(store.router)
+api_router.include_router(images.router)
+api_router.include_router(importer.router)
 
 # Include the router in the main app
 app.include_router(api_router)

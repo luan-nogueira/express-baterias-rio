@@ -4,7 +4,7 @@ Redesign of expressbateriasrio.com.br: conversion site for battery roadside repl
 
 ## Confirmed business data (from current site)
 Phone/WhatsApp (21) 99940-4005; Instagram @expressbateriasrj; Google Maps cid=5553564379686471721;
-areas Zona Sul, Centro, Barra da Tijuca (+ neighborhood list in lib/contact.ts); até 30 min; entrega e instalação grátis;
+areas Zona Sul, Centro (NOT Barra) (+ neighborhood list in lib/contact.ts); até 30 min; entrega e instalação grátis;
 10x sem juros; "achou mais barato a gente cobre"; 10 anos no Rio; 453 avaliações Google (rating "Excelente"); real reviews in Reviews.tsx.
 NOT available / to confirm: street address, opening hours, CNPJ, warranty term, battery brands sold, real product photos.
 
