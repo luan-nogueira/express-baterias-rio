@@ -21,10 +21,8 @@ export default function Finder() {
       <link rel="canonical" href="https://expressbateriasrio.com.br/encontre-sua-bateria" />
 
       <section className="relative overflow-hidden bg-navy-900 text-white">
-        <div className="bg-wiring absolute inset-0" aria-hidden="true" />
         <div className="relative mx-auto max-w-5xl px-5 pb-24 pt-12 sm:px-8 sm:pt-16">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-amber-brand">Buscador de bateria</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl" data-testid="finder-page-title">
+          <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl" data-testid="finder-page-title">
             Encontre a bateria ideal para seu carro
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-slate-300">

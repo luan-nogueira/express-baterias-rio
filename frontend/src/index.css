@@ -1,16 +1,23 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/dm-sans";
-@import "@fontsource-variable/jetbrains-mono";
-@import "@fontsource-variable/outfit";
+
+/* One self-hosted family: Archivo (wght 100–900, wdth 62–125%). Wide cuts echo the logo lettering. */
+@font-face {
+    font-family: "Archivo";
+    src: url("/fonts/archivo-latin.woff2") format("woff2-variations"), url("/fonts/archivo-latin.woff2") format("woff2");
+    font-weight: 100 900;
+    font-stretch: 62% 125%;
+    font-style: normal;
+    font-display: swap;
+}
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --font-heading: 'Outfit Variable', system-ui, sans-serif;
-    --font-sans: 'DM Sans Variable', system-ui, sans-serif;
-    --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+    --font-heading: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --font-sans: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
     --color-navy-950: #060E2B;
     --color-navy-900: #0A1438;
     --color-navy-800: #0C1A4B;
@@ -59,18 +66,11 @@
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
     --animate-rise: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-    --animate-current: current 2.4s linear infinite;
 }
 
 @keyframes rise {
     from { opacity: 0; transform: translateY(14px); }
     to { opacity: 1; transform: none; }
-}
-
-/* a small "charge" pulse travelling along a line — used once, on the hero rule */
-@keyframes current {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(400%); }
 }
 
 :root {
@@ -157,6 +157,12 @@
     }
   h1, h2, h3, h4 {
     font-family: var(--font-heading);
+    font-stretch: 115%;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    }
+  .font-mono {
+    font-variant-numeric: tabular-nums;
     }
   :focus-visible {
     outline: 2px solid #FFB900;
@@ -164,12 +170,24 @@
     }
 }
 
-/* industrial hairline grid used behind dark sections */
-.bg-wiring {
-    background-image:
-        linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
-        linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
-    background-size: 48px 48px;
+/* hero: the shop's own facade photo, pushed far back behind navy */
+.hero-shop {
+    background-image: linear-gradient(rgb(10 20 56 / 0.9), rgb(10 20 56 / 0.94)), url("/img/2.webp");
+    background-size: cover;
+    background-position: center;
+}
+
+/* full-width light band behind a section whose box is capped at max-w-7xl */
+.band-gray {
+    background: #F4F5F7;
+    box-shadow: 0 0 0 100vmax #F4F5F7;
+    clip-path: inset(0 -100vmax);
+}
+
+/* yellow marker behind a word, like paint on the shop sign */
+.mark-paint {
+    background: linear-gradient(transparent 60%, #FFB900 60%, #FFB900 92%, transparent 92%);
+    padding: 0 0.06em;
 }
 
 @media (prefers-reduced-motion: reduce) {
