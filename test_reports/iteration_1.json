@@ -1,0 +1,95 @@
+{
+  "iteration": 1,
+  "summary": "All 8 acceptance_matrix criteria covered with 2 backend test files and 9 browser checks. All passed.",
+  "passed": 11,
+  "failed": 0,
+  "checks": [
+    {
+      "criterion": "Quote form validation and submission (POST /api/quotes 201)",
+      "name": "test_tscheck_quote_submission.py",
+      "lane": "backend",
+      "status": "passed",
+      "evidence": "POST /api/quotes with valid tscheck payload -> 201, body has id/status=novo; POST with invalid name/phone/vehicle -> 422"
+    },
+    {
+      "criterion": "Admin login, CRUD battery and vehicle, toggle validation, quote status change, logout",
+      "name": "test_tscheck_admin_crud_and_auth.py",
+      "lane": "backend",
+      "status": "passed",
+      "evidence": "POST /auth/login wrong password -> 401; correct login -> 200 + GET /auth/me 200; GET /admin/batteries without cookie -> 401; battery POST/PUT/DELETE on tscheck-batt-001 -> 201/200/200 and removed from list after delete; vehicle POST -> 201 validated=false, PUT validated=true -> 200, GET /finder/result/{id} shows validated=true, DELETE -> 200; quote PATCH status -> em_atendimento reflected in GET /admin/quotes"
+    },
+    {
+      "criterion": "Home page renders hero, finder, services, differentials, area+quote form, reviews, FAQ, footer with working WhatsApp/tel links",
+      "name": "home-page-sections-and-links",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "hero-title, battery-finder, area-neighborhoods, quote-form, reviews-count, footer-whatsapp-link all visible; floating-whatsapp-button href contains wa.me/5521999404005?text=...; hero-call-link href = tel:+5521999404005"
+    },
+    {
+      "criterion": "Finder search by name with autocomplete (keyboard arrows + Enter)",
+      "name": "finder-search-autocomplete",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Typed 'onix' -> finder-search-results shows Onix entries; ArrowDown+Enter navigated to /encontre-sua-bateria?v=<id> with finder-result visible"
+    },
+    {
+      "criterion": "Finder cascade make -> model -> year -> version, popular chips prefill make/model, result specs/pending badge/alternatives, Alterar veículo returns to finder form",
+      "name": "finder-cascade-and-result",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Jeep/Compass/2023 -> finder-versions -> selected version 0 -> result-vehicle-name contains Compass, result-vehicle-spec/result-pending-validation-badge/result-battery-card-0/result-alternatives-note visible; result-change-vehicle-top-button returns to popular-list view; popular chip 'finder-popular-compass' prefills make=Jeep, model=Compass"
+    },
+    {
+      "criterion": "Result WhatsApp button contains vehicle, year, Start-Stop, battery code",
+      "name": "result-whatsapp-and-specs",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "result-whatsapp-button-0 href decoded contains 'Compass', '2023', 'start-stop' (case-insensitive) and battery code matching /REF-/"
+    },
+    {
+      "criterion": "Quote form validation and submission (UI)",
+      "name": "quote-form-validation-and-submit",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Empty submit shows quote-name-error/quote-phone-error; valid submit triggers POST /api/quotes -> 201, quote-success panel + quote-success-whatsapp-link visible"
+    },
+    {
+      "criterion": "Admin login, CRUD battery, logout, wrong password error (UI)",
+      "name": "admin-login-crud-and-logout",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Wrong password shows admin-login-error; correct login shows admin-user-email; created/edited/deleted battery row admin-battery-row-<code> (ah 55->70->removed); logout returns to admin-login-form"
+    },
+    {
+      "criterion": "Admin vehicle CRUD + validation toggle reflected on public result",
+      "name": "admin-vehicle-crud-and-validation-toggle",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Created tscheck vehicle, toggled validate button text to 'Validada', public /encontre-sua-bateria?v=<id> shows result-validated-badge; vehicle deleted afterwards"
+    },
+    {
+      "criterion": "Quote appears in admin Pedidos tab and status can be changed",
+      "name": "admin-quote-status-and-inbox",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Submitted quote via public form with unique tscheck name; admin-quotes-table shows the row; admin-quote-status-select changed to em_atendimento and value persisted"
+    },
+    {
+      "criterion": "Mobile 390px: no horizontal scroll, mobile menu opens and links navigate",
+      "name": "mobile-no-horizontal-scroll-and-menu",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "scrollWidth <= clientWidth+2 at 390px viewport; mobile-menu-button opens sheet, mobile-nav-servicos-link navigates to service-item-0 section; floating-whatsapp-button bounding box present"
+    },
+    {
+      "criterion": "404 route and SEO assets (robots.txt, sitemap.xml) via public preview URL",
+      "name": "404-route-and-seo-assets",
+      "lane": "browser",
+      "status": "passed",
+      "evidence": "Ran against https://express-baterias-rio.preview.emergentagent.com/xyz -> not-found-page visible; GET /robots.txt -> 200; GET /sitemap.xml -> 200"
+    }
+  ],
+  "bugs": [],
+  "action_items": [],
+  "retest_needed": false
+}

@@ -1,0 +1,258 @@
+{
+  "theme": {
+    "archetype": "ARCHETYPE 2: THE PERFORMANCE PRO & INDUSTRIAL PRECISION",
+    "mode": "light_with_high_contrast_industrial_navy_and_amber",
+    "rationale": "Identidade Express Baterias Rio preservando Amarelo Ouro (#FFB900) e Azul Marinho Profundo (#0C1A4B / #182E89) com base em tons claros de alta legibilidade, contraste automotivo profissional, sem clichês de IA (sem degradê roxo/neon/glass excessivo)."
+  },
+  "typography": {
+    "font_family_heading": "Outfit Variable, -apple-system, BlinkMacSystemFont, sans-serif",
+    "font_family_body": "DM Sans Variable, -apple-system, BlinkMacSystemFont, sans-serif",
+    "font_family_mono": "JetBrains Mono Variable, monospace",
+    "import_statements": [
+      "@import \"@fontsource-variable/outfit\";",
+      "@import \"@fontsource-variable/dm-sans\";",
+      "@import \"@fontsource-variable/jetbrains-mono\";"
+    ],
+    "scale_px": {
+      "display": 56,
+      "h1": 44,
+      "h2": 32,
+      "h3": 22,
+      "h4": 18,
+      "body": 16,
+      "caption": 14
+    },
+    "hierarchy_rules": {
+      "hero_h1": "text-4xl sm:text-5xl lg:text-[54px] font-extrabold tracking-tight leading-[1.08]",
+      "section_h2": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900",
+      "card_h3": "text-lg sm:text-xl font-semibold tracking-tight text-slate-900",
+      "specs_mono": "font-mono text-sm tracking-tight font-medium"
+    }
+  },
+  "colors": {
+    "brand": {
+      "primary_navy": "#0E1E5B",
+      "primary_navy_dark": "#071135",
+      "primary_navy_light": "#1B3598",
+      "accent_yellow": "#FFB900",
+      "accent_yellow_hover": "#E5A600",
+      "accent_yellow_contrast_text": "#0B1536",
+      "whatsapp_green": "#25D366",
+      "whatsapp_green_dark": "#1EBE5D",
+      "whatsapp_contrast_text": "#04260E"
+    },
+    "surfaces": [
+      {
+        "name": "page",
+        "kind": "solid",
+        "bg": "#F8FAFC",
+        "on_bg": "#0F172A",
+        "on_bg_muted": "#475569",
+        "roles": {
+          "border": "#E2E8F0",
+          "link": "#0E1E5B",
+          "accent_pill": "#FEF3C7"
+        }
+      },
+      {
+        "name": "panel_white",
+        "kind": "solid",
+        "bg": "#FFFFFF",
+        "on_bg": "#0F172A",
+        "on_bg_muted": "#64748B",
+        "roles": {
+          "border": "#E2E8F0",
+          "border_highlight": "#FFB900",
+          "badge_bg": "#EFF6FF",
+          "badge_text": "#1E3A8A"
+        }
+      },
+      {
+        "name": "panel_navy_dark",
+        "kind": "solid",
+        "bg": "#0A1438",
+        "on_bg": "#FFFFFF",
+        "on_bg_muted": "#CBD5E1",
+        "roles": {
+          "border": "#1E2958",
+          "link": "#FFB900",
+          "tag_bg": "#142566",
+          "tag_text": "#FDE68A"
+        }
+      },
+      {
+        "name": "hero_banner",
+        "kind": "solid",
+        "bg": "#0C1A4B",
+        "on_bg": "#FFFFFF",
+        "on_bg_muted": "#E2E8F0",
+        "roles": {
+          "badge_bg": "#FFB900",
+          "badge_text": "#0A1438",
+          "highlight": "#FACC15"
+        }
+      },
+      {
+        "name": "finder_widget",
+        "kind": "solid",
+        "bg": "#FFFFFF",
+        "on_bg": "#0F172A",
+        "on_bg_muted": "#64748B",
+        "roles": {
+          "step_active_bg": "#0E1E5B",
+          "step_active_text": "#FFFFFF",
+          "border": "#CBD5E1"
+        }
+      },
+      {
+        "name": "admin_surface",
+        "kind": "solid",
+        "bg": "#F1F5F9",
+        "on_bg": "#0F172A",
+        "on_bg_muted": "#64748B",
+        "roles": {
+          "sidebar_bg": "#0A1438",
+          "sidebar_text": "#F8FAFC",
+          "sidebar_muted": "#94A3B8"
+        }
+      }
+    ],
+    "accent": "#FFB900",
+    "on_accent": "#0A1438"
+  },
+  "entry_surfaces": {
+    "/": "split hero — direct conversion headline + dual WhatsApp/Finder CTA left, real workshop & mobile emergency battery photo with guarantee badge right",
+    "/encontre-sua-bateria": "focused search engine layout — vehicle autocomplete & cascading dropdowns top, specs comparison & WhatsApp trigger bottom",
+    "/admin": "compact industrial auth card — Express Baterias fleet security portal with credentials login"
+  },
+  "component_structure": {
+    "header": {
+      "type": "Crystal Glass / Solid Hybrid with Navy Border",
+      "contents": [
+        "Brand Logo (Express Baterias Rio with battery lightning badge)",
+        "Key Nav Links: Encontrar Bateria, Serviços & Socorro, Marcas & Modelos, Regiões Atendidas, Avaliações, FAQ",
+        "Emergency Hotline Chip (21 99999-9999 / Atendimento Imediato Rio de Janeiro)",
+        "Primary CTA: WhatsApp Button (Ligue ou Peça pelo WhatsApp)",
+        "Mobile Sheet Drawer"
+      ]
+    },
+    "hero": {
+      "composition": "Asymmetric Split (60% value prop + quick selector preview, 40% authentic photo with floating verification specs card)",
+      "highlights": [
+        "Sua bateria descarregou no Rio? Entrega e Instalação Grátis em até 50 min",
+        "Pagamento apenas após teste de alternador e instalação concluída",
+        "CTAs: 'Pedir Bateria no WhatsApp' (destaque verde/amarelo) + 'Encontrar Bateria do Meu Carro' (outline navy)"
+      ]
+    },
+    "battery_finder_moura_style": {
+      "description": "Ferramenta interativa de busca de bateria veicular de alta precisão",
+      "modes": [
+        "Modo 1: Autocomplete com busca direta (ex: 'Civic 2.0', 'Renegade Diesel', 'Onix 1.0', 'HB20')",
+        "Modo 2: Filtro em cascata: Marca -> Modelo -> Ano -> Motorização / Versão (ex: Start-Stop)",
+        "Chips de atalho rápido para carros mais populares no Rio (Onix, HB20, Kwid, Gol, Compass, Corolla, Renegade, Kicks)"
+      ],
+      "result_card_specs": [
+        "Capacidade Nominal (Ah - ex: 60Ah, 70Ah EFB, 80Ah AGM)",
+        "Corrente de Partida a Frio (CCA - ex: 480A, 620A)",
+        "Tecnologia (SLI Convencional, EFB Start-Stop, AGM Premium)",
+        "Polaridade (Polo Positivo Direito D / Esquerdo E)",
+        "Dimensões (C x L x A em mm)",
+        "Marcas recomendadas em estoque (Moura, Heliar, Zetta, Cral, Bosch)",
+        "Aviso técnico legal: 'Aguardando validação técnica — confirme motorização e ano com nosso especialista via WhatsApp'",
+        "CTA Direto: 'Solicitar Esta Bateria por WhatsApp com Envio Imediato'"
+      ]
+    },
+    "services_grid": {
+      "description": "Grid editorial assimétrico para serviços automotivos",
+      "items": [
+        "Troca de Bateria Delivery (Carros de Passeio e SUVs)",
+        "Baterias para Frotas, Vans, Utilitários e Caminhões",
+        "Baterias Seladas para Motos e Scooters",
+        "Socorro Elétrico e Teste de Fuga / Alternador Gratuito no Local",
+        "Logística Reversa / Descarte Ecológico com Desconto na Bateria Velha"
+      ]
+    },
+    "coverage_areas": {
+      "title": "Atendimento Rápido em Todo o Grande Rio",
+      "zones": [
+        "Zona Sul (Copacabana, Ipanema, Botafogo, Flamengo, Leblon, Tijuca...)",
+        "Barra e Recreio (Barra da Tijuca, Recreio dos Bandeirantes, Jacarepaguá)",
+        "Zona Norte (Méier, Maracanã, Vila Isabel, Madureira, Ilha do Governador)",
+        "Centro e Zona Portuária (Centro, Lapa, Porto Maravilha)",
+        "Niterói e Baixada (Consulte tempo estimado de despacho)"
+      ]
+    },
+    "trust_and_reviews": {
+      "metrics": "453 avaliações 5.0 estrelas no Google",
+      "social_proof": "Depoimentos reais de motoristas atendidos na rua, condomínios e garagens comerciais com selo verificado Google."
+    },
+    "quote_form": {
+      "fields": ["Nome", "WhatsApp", "Marca / Modelo / Ano", "Bairro / Ponto de Referência no Rio", "Urgência (Agora / Agendar)"],
+      "action": "Salva no MongoDB para rastreamento no painel /admin e abre o WhatsApp imediatamente com a mensagem formatada."
+    },
+    "admin_dashboard": {
+      "route": "/admin",
+      "features": [
+        "Login protegido com sessão de segurança",
+        "Gerenciamento de Marcas, Modelos, Anos e Motorizações",
+        "Gerenciamento de Baterias (Marca, Modelo, Ah, CCA, Tecnologia, Preço sugerido, Dimensões)",
+        "Tabela de Vínculos / Aplicações Veículo -> Bateria",
+        "Histórico de Pedidos de Orçamento recebidos com status (Pendente, Atendido, Concluído)"
+      ]
+    }
+  },
+  "image_urls": {
+    "store_and_stock": [
+      {
+        "url": "https://expressbateriasrio.com.br/wp-content/uploads/2026/09/1-express-baterias-loja-zona-sul-baterias-automotivas.jpg",
+        "category": "hero_or_storefront",
+        "description": "Fachada real da Express Baterias Rio na Zona Sul com estoque visível e identificação"
+      },
+      {
+        "url": "https://expressbateriasrio.com.br/wp-content/uploads/2026/09/2-express-baterias-loja-zona-sul-baterias-para-moto-baterias-para-carro.jpg",
+        "category": "inventory_and_tech",
+        "description": "Prateleiras com baterias automotivas e de moto seladas Moura/Heliar/Zetta"
+      },
+      {
+        "url": "https://expressbateriasrio.com.br/wp-content/uploads/2026/09/3-express-baterias-loja-zona-sul-baterias-para-moto-baterias-para-carro-1-scaled.jpg",
+        "category": "technician_installation",
+        "description": "Técnico especializado e bancada de teste diagnóstico de baterias"
+      },
+      {
+        "url": "https://expressbateriasrio.com.br/wp-content/uploads/2026/09/4-express-baterias-loja-zona-sul-baterias-para-moto-baterias-para-carro-1-scaled.jpg",
+        "category": "fleet_delivery",
+        "description": "Veículo e equipe de socorro rápido de bateria no Rio de Janeiro"
+      }
+    ],
+    "automotive_details": [
+      {
+        "url": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=900&q=80",
+        "category": "car_engine_battery",
+        "description": "Motor de veículo moderno sob capô para ilustração do serviço de troca técnica"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=900&q=80",
+        "category": "auto_mechanic_inspection",
+        "description": "Inspeção e teste elétrico de bateria automotiva com aparelho de teste"
+      }
+    ]
+  },
+  "motion": {
+    "library": "motion/react",
+    "transitions": "micro-animations com duration de 0.2s a 0.35s ease-out, hover states com scale sutil (scale-[1.015]), badges pulsantes discretas",
+    "reduced_motion": "respeitar prefers-reduced-motion com fallback estático instantâneo"
+  },
+  "accessibility": {
+    "contrast_ratio": "Mínimo 4.5:1 em todos os textos normais e 3:1 em números e títulos grandes",
+    "test_ids": "Todos os botões, inputs, selects, links e cards de resultados DEVEM possuir data-testid claros (ex: data-testid='finder-brand-select', data-testid='hero-whatsapp-button', data-testid='quote-submit-button', data-testid='admin-login-button')",
+    "keyboard_nav": "Selects, autocomplete e abas totalmente navegáveis por teclado com outline de foco visível (focus-visible:ring-2 focus-visible:ring-amber-500)"
+  },
+  "instructions_to_main_agent": [
+    "1. Utilize o backend FastAPI existente em /app/backend com MongoDB para seedar veículos, marcas, baterias e aplicações reais (Fiat, VW, GM, Ford, Toyota, Honda, Jeep, Hyundai, Renault, etc.), além do endpoint de cotação /api/quotes e autenticação /api/admin.",
+    "2. No frontend, implemente a busca de bateria inspirada na precisão da Moura com autocomplete inteligente + seleção cascata (Marca -> Modelo -> Ano -> Motorização) e chips de acesso rápido.",
+    "3. No painel de resultado da bateria, exiba sempre as especificações técnicas completas: Ah, CCA, tecnologia (Convencional/EFB/AGM), dimensões, polaridade e o botão dinâmico para WhatsApp com mensagem pré-formatada com o modelo do carro.",
+    "4. Crie tanto a seção na Home quanto a rota completa /encontre-sua-bateria e o painel administrativo em /admin.",
+    "5. Garanta suporte a mobile impecável, com botões de chamada rápida e WhatsApp flutuante no canto inferior.",
+    "6. Use os componentes Shadcn instalados (@base-ui/react) com estilo customizado industrial navy + amber."
+  ]
+}
