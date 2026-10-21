@@ -193,7 +193,7 @@ export function BatteryFinder() {
                         <span className="block font-semibold text-navy-900">{vehicleName(v)}</span>
                         <span className="block text-sm text-slate-600">{vehicleSpec(v)}</span>
                       </span>
-                      <span className="shrink-0 font-mono text-xs text-slate-500">{yearRange(v)}</span>
+                      <span className="shrink-0 font-mono text-xs text-slate-600">{yearRange(v)}</span>
                     </li>
                   ))}
                 </ul>
@@ -273,7 +273,7 @@ export function BatteryFinder() {
                 <span className="mr-1.5 font-mono text-xs text-amber-brand-hover">4</span>Motorização / versão
               </p>
               {versionsQ.isLoading ? (
-                <p className="flex items-center gap-2 text-sm text-slate-500"><Loader2 className="size-4 animate-spin" /> Carregando versões…</p>
+                <p className="flex items-center gap-2 text-sm text-slate-600"><Loader2 className="size-4 animate-spin" /> Carregando versões…</p>
               ) : (versionsQ.data ?? []).length === 0 ? (
                 <p className="text-sm text-slate-600">Nenhuma versão cadastrada para esse ano.</p>
               ) : (
@@ -288,7 +288,7 @@ export function BatteryFinder() {
                       >
                         <span>
                           <span className="block font-semibold text-navy-900">{v.engine}{v.version ? ` · ${v.version}` : ""}</span>
-                          <span className="block text-xs text-slate-500">
+                          <span className="block text-xs text-slate-600">
                             {yearRange(v)} · {v.start_stop ? "com Start-Stop" : "sem Start-Stop"}
                           </span>
                         </span>
@@ -311,7 +311,7 @@ export function BatteryFinder() {
 
       {(popularQ.data ?? []).length > 0 && (
         <div className="mt-6">
-          <p className="mb-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-slate-500">Mais procurados</p>
+          <p className="mb-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-slate-600">Mais procurados</p>
           <ul className="flex flex-wrap gap-2" data-testid="finder-popular-list">
             {(popularQ.data ?? []).map((v) => (
               <li key={v.id}>

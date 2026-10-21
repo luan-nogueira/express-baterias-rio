@@ -13,7 +13,7 @@ export function BatteryGraphic({ battery, className }: { battery: Battery; class
           className="aspect-square w-full object-contain"
           data-testid="battery-product-image"
         />
-        <figcaption className="mt-2 text-center font-mono text-[10px] uppercase tracking-wider text-slate-500">Foto do produto</figcaption>
+        <figcaption className="mt-2 text-center font-mono text-[10px] uppercase tracking-wider text-slate-600">Foto do produto</figcaption>
       </figure>
     );
   }
@@ -30,7 +30,7 @@ export function BatteryGraphic({ battery, className }: { battery: Battery; class
         <text x="110" y="98" textAnchor="middle" fill="#FFFFFF" fontSize="30" fontFamily="Outfit Variable, sans-serif" fontWeight="700">{`${battery.ah}Ah`}</text>
         <text x="110" y="122" textAnchor="middle" fill="#FFB900" fontSize="12" letterSpacing="2" fontFamily="JetBrains Mono Variable, monospace">{battery.technology.toUpperCase()}</text>
       </svg>
-      <figcaption className="mt-2 text-center font-mono text-[10px] uppercase tracking-wider text-slate-500">Ilustração técnica</figcaption>
+      <figcaption className="mt-2 text-center font-mono text-[10px] uppercase tracking-wider text-slate-600">Ilustração técnica</figcaption>
     </figure>
   );
 }

@@ -17,7 +17,7 @@ const REVIEWS = [
 
 function Stars() {
   return (
-    <span className="flex gap-0.5" aria-label="5 estrelas">
+    <span className="flex gap-0.5" role="img" aria-label="5 estrelas">
       {Array.from({ length: 5 }).map((_, i) => (
         <Star key={i} className="size-4 fill-amber-brand text-amber-brand" aria-hidden="true" />
       ))}
@@ -45,7 +45,7 @@ export function Reviews() {
               <Reveal delay={i * 0.05}>
                 <Stars />
                 <p className="mt-3 leading-relaxed text-slate-700">“{r.text}”</p>
-                <p className="mt-2 font-mono text-xs text-slate-500">{r.name}</p>
+                <p className="mt-2 font-mono text-xs text-slate-600">{r.name}</p>
               </Reveal>
             </li>
           ))}

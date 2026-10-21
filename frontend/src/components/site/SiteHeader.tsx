@@ -16,7 +16,7 @@ const NAV = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-navy-900/95 backdrop-blur supports-[backdrop-filter]:bg-navy-900/85">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-navy-900">
       <a
         href="#conteudo"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded focus:bg-amber-brand focus:px-3 focus:py-2 focus:text-navy-900"
@@ -81,7 +81,7 @@ export function SiteHeader() {
               <div className="flex h-full flex-col px-6 pb-8 pt-16">
                 <nav aria-label="Menu móvel">
                   <ul className="divide-y divide-white/10 border-y border-white/10">
-                    {NAV.map((item, i) => (
+                    {NAV.map((item) => (
                       <li key={item.id}>
                         <Link
                           to={item.to}
@@ -89,7 +89,6 @@ export function SiteHeader() {
                           data-testid={`mobile-nav-${item.id}-link`}
                           className="flex items-baseline gap-4 py-4 font-heading text-xl font-semibold transition-colors hover:text-amber-brand"
                         >
-                          <span className="font-mono text-xs text-amber-brand">0{i + 1}</span>
                           {item.label}
                         </Link>
                       </li>
