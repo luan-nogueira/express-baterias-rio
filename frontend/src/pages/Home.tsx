@@ -339,7 +339,7 @@ export default function Home() {
           <h2 id="cta-title" className="max-w-xl text-3xl font-bold leading-tight tracking-tight text-navy-900">
             Carro parado agora? Mande a localização que a gente vai.
           </h2>
-          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-7">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <WaButton
               message={WA_MESSAGES.emergency}
               testId="cta-whatsapp-button"
@@ -351,15 +351,10 @@ export default function Home() {
             <a
               href={PHONE_TEL}
               data-testid="cta-call-button"
-              className="group inline-flex items-center gap-2.5 text-navy-900"
+              className="inline-flex h-14 items-center justify-center gap-2.5 rounded-md border-2 border-navy-900 px-6 font-semibold text-navy-900 transition-[background-color,color] duration-200 hover:bg-navy-900 hover:text-white"
             >
               <Phone className="size-5" aria-hidden="true" />
-              <span className="flex flex-col leading-tight">
-                <span className="text-xs font-medium uppercase tracking-[0.14em] text-navy-900/70">ou ligue</span>
-                <span className="border-b-2 border-navy-900/30 font-mono text-lg font-bold transition-colors duration-200 group-hover:border-navy-900">
-                  {PHONE_DISPLAY}
-                </span>
-              </span>
+              Ligar {PHONE_DISPLAY}
             </a>
           </div>
         </div>
