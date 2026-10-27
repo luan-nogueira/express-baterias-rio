@@ -14,7 +14,7 @@ import { StoreDetails } from "@/components/site/StoreDetails";
 import { MAPS_URL, NEIGHBORHOODS, WA_MESSAGES } from "@/lib/contact";
 
 const FACTS = [
-  { k: "Até 30 min", v: "para chegar até você" },
+  { k: "Até 40 min", v: "para chegar até você" },
   { k: "Grátis", v: "entrega e instalação" },
   { k: "10x", v: "sem juros" },
   { k: "Achou mais barato?", v: "a gente cobre" },
@@ -62,7 +62,7 @@ export default function Home() {
       <title>Express Baterias Rio – Socorro e troca de bateria automotiva no Rio</title>
       <meta
         name="description"
-        content="Bateria arriou? Chegamos em até 30 minutos na Zona Sul e no Centro. Entrega e instalação grátis, até 10x sem juros. Baterias para carro, moto e caminhão."
+        content="Bateria arriou? Chegamos em até 40 minutos na Zona Sul, no Centro e proximidades. Entrega e instalação grátis, até 10x sem juros. Baterias para carro, moto e caminhão."
       />
       <link rel="canonical" href="https://expressbateriasrio.com.br/" />
 
@@ -72,13 +72,13 @@ export default function Home() {
           <div className="lg:col-span-7">
             <p className="flex items-center gap-2.5 text-sm font-semibold text-slate-300" data-testid="hero-eyebrow">
               <span className="size-2 rounded-full bg-wa" aria-hidden="true" />
-              Atendimento imediato na Zona Sul e no Centro
+              Atendimento na Zona Sul, Centro e proximidades
             </p>
             <h1 id="hero-title" className="mt-4 text-[32px] font-extrabold leading-[1.04] text-white sm:text-[54px] lg:text-[60px]" data-testid="hero-title">
               Bateria arriou? A gente instala a nova <span className="text-amber-brand">onde o carro estiver.</span>
             </h1>
             <p className="mt-6 hidden max-w-xl text-lg leading-relaxed text-slate-300 sm:block" data-testid="hero-subtitle">
-              Chegamos em até 30 minutos, com <strong className="font-semibold text-white">entrega e instalação grátis</strong> e
+              Chegamos em até 40 minutos, com <strong className="font-semibold text-white">entrega e instalação grátis</strong> e
               parcelamento em <strong className="font-semibold text-white">até 10x sem juros</strong>.
             </p>
             <div className="mt-6 max-w-xl sm:mt-8">
@@ -199,7 +199,7 @@ export default function Home() {
             <div className="mt-14 grid gap-x-10 gap-y-10 sm:grid-cols-2">
               <Reveal>
                 <h3 className="font-heading text-xl font-semibold text-amber-brand">Chegamos rápido</h3>
-                <p className="mt-2 leading-relaxed text-slate-300">Entrega e instalação em até 30 minutos, no local onde o veículo está.</p>
+                <p className="mt-2 leading-relaxed text-slate-300">Entrega e instalação em até 40 minutos, no local onde o veículo está.</p>
               </Reveal>
               <Reveal delay={0.05}>
                 <h3 className="font-heading text-xl font-semibold text-amber-brand">Garantia de verdade</h3>
@@ -242,7 +242,7 @@ export default function Home() {
               Nós vamos até você.
             </h2>
             <p className="mt-4 leading-relaxed text-slate-600">
-              Atendemos a Zona Sul, o Centro e os bairros próximos. Diga o bairro e o veículo: a equipe responde no WhatsApp com
+              Atendemos a Zona Sul, o Centro e proximidades. Diga o bairro e o veículo: a equipe responde no WhatsApp com
               a bateria, o valor e a previsão de chegada.
             </p>
             <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-2.5 text-[15px] text-navy-900 sm:grid-cols-3 lg:grid-cols-2" data-testid="area-neighborhoods">
