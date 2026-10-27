@@ -27,7 +27,7 @@ interface Props {
 function Spec({ label, value, testId }: { label: string; value: React.ReactNode; testId: string }) {
   return (
     <div className="border-t border-border pt-2.5">
-      <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-slate-500">{label}</dt>
+      <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-slate-600">{label}</dt>
       <dd className="mt-1 font-mono text-[15px] font-semibold text-navy-900" data-testid={testId}>{value}</dd>
     </div>
   );
@@ -57,7 +57,7 @@ function BatteryCard({ battery, primary, index, data, year }: { battery: Battery
           >
             {isPrimary ? "Indicação principal" : `Alternativa ${index}`}
           </span>
-          <span className="font-mono text-xs text-slate-500">Código {battery.code}</span>
+          <span className="font-mono text-xs text-slate-600">Código {battery.code}</span>
         </div>
         <h3 className="mt-3 text-2xl font-bold tracking-tight text-navy-900" data-testid={`result-battery-title-${index}`}>
           {battery.technology} {battery.ah}Ah
@@ -84,7 +84,7 @@ function BatteryCard({ battery, primary, index, data, year }: { battery: Battery
             {differenceNote(primary, battery)}
           </p>
         )}
-        <p className="mt-2 text-xs text-slate-500">
+        <p className="mt-2 text-xs text-slate-600">
           {battery.in_stock === true
             ? "Disponível em estoque (confirmamos no atendimento)."
             : battery.in_stock === false
@@ -161,8 +161,8 @@ export function FinderResult({ vehicleId, year, onChangeVehicle }: Props) {
             </h2>
             <dl className="mt-4 flex flex-wrap gap-x-8 gap-y-2 font-mono text-sm text-slate-300">
               <div><dt className="sr-only">Motorização</dt><dd data-testid="result-vehicle-spec">{vehicleSpec(vehicle)}</dd></div>
-              <div><dt className="inline text-slate-500">Ano </dt><dd className="inline" data-testid="result-vehicle-year">{year ?? yearRange(vehicle)}</dd></div>
-              <div><dt className="inline text-slate-500">Start-Stop </dt><dd className="inline" data-testid="result-vehicle-startstop">{vehicle.start_stop ? "Sim" : "Não"}</dd></div>
+              <div><dt className="inline text-slate-600">Ano </dt><dd className="inline" data-testid="result-vehicle-year">{year ?? yearRange(vehicle)}</dd></div>
+              <div><dt className="inline text-slate-600">Start-Stop </dt><dd className="inline" data-testid="result-vehicle-startstop">{vehicle.start_stop ? "Sim" : "Não"}</dd></div>
             </dl>
           </div>
           <button

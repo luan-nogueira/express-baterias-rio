@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, MapPin, Phone } from "lucide-react";
+import { ArrowRight, ArrowUpRight, MapPin } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { WaButton } from "@/components/site/WaButton";
 import { Reveal } from "@/components/site/Reveal";
@@ -9,11 +9,12 @@ import { QuoteForm } from "@/components/site/QuoteForm";
 import { Reviews } from "@/components/site/Reviews";
 import { Faq } from "@/components/site/Faq";
 import { LocationButton } from "@/components/site/LocationButton";
+import { EmergencyForm } from "@/components/site/EmergencyForm";
 import { StoreDetails } from "@/components/site/StoreDetails";
-import { MAPS_URL, NEIGHBORHOODS, PHONE_DISPLAY, PHONE_TEL, WA_MESSAGES } from "@/lib/contact";
+import { MAPS_URL, NEIGHBORHOODS, WA_MESSAGES } from "@/lib/contact";
 
 const FACTS = [
-  { k: "Até 30 min", v: "para chegar até você" },
+  { k: "Até 40 min", v: "para chegar até você" },
   { k: "Grátis", v: "entrega e instalação" },
   { k: "10x", v: "sem juros" },
   { k: "Achou mais barato?", v: "a gente cobre" },
@@ -50,15 +51,6 @@ const SERVICES = [
   },
 ];
 
-function Eyebrow({ children, tone = "dark" }: { children: React.ReactNode; tone?: "dark" | "light" }) {
-  return (
-    <p className={`flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] ${tone === "light" ? "text-amber-brand" : "text-navy-600"}`}>
-      <span className={`h-px w-8 ${tone === "light" ? "bg-amber-brand" : "bg-navy-600"}`} aria-hidden="true" />
-      {children}
-    </p>
-  );
-}
-
 export default function Home() {
   const { hash } = useLocation();
   useEffect(() => {
@@ -70,77 +62,61 @@ export default function Home() {
       <title>Express Baterias Rio – Socorro e troca de bateria automotiva no Rio</title>
       <meta
         name="description"
-        content="Bateria arriou? Chegamos em até 30 minutos na Zona Sul e no Centro. Entrega e instalação grátis, até 10x sem juros. Baterias para carro, moto e caminhão."
+        content="Bateria arriou? Chegamos em até 40 minutos na Zona Sul, no Centro e proximidades. Entrega e instalação grátis, até 10x sem juros. Baterias para carro, moto e caminhão."
       />
+      <link rel="canonical" href="https://expressbateriasrio.com.br/" />
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-navy-900 text-white" aria-labelledby="hero-title">
-        <div className="bg-wiring absolute inset-0" aria-hidden="true" />
-        <div className="relative mx-auto grid max-w-7xl gap-12 px-5 pb-28 pt-12 sm:px-8 lg:grid-cols-12 lg:gap-8 lg:pb-36 lg:pt-20">
-          <div className="lg:col-span-7 lg:pr-6">
-            <p className="flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.18em] text-amber-brand animate-rise" data-testid="hero-eyebrow">
-              <span className="relative flex size-2">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-wa opacity-60 motion-reduce:hidden" />
-                <span className="relative inline-flex size-2 rounded-full bg-wa" />
-              </span>
-              Atendimento imediato · Zona Sul e Centro
+      <section className="hero-shop bg-navy-900 text-white" aria-labelledby="hero-title">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 pb-14 pt-6 sm:px-8 sm:pt-10 lg:grid-cols-12 lg:items-center lg:gap-10 lg:pb-20 lg:pt-16">
+          <div className="lg:col-span-7">
+            <p className="flex items-center gap-2.5 text-sm font-semibold text-slate-300" data-testid="hero-eyebrow">
+              <span className="size-2 rounded-full bg-wa" aria-hidden="true" />
+              Atendimento na Zona Sul, Centro e proximidades
             </p>
-            <h1 id="hero-title" className="mt-6 text-[40px] font-extrabold leading-[1.04] tracking-tight sm:text-6xl lg:text-[68px]" data-testid="hero-title">
-              Bateria arriou?
-              <span className="block text-amber-brand">A gente leva a nova e instala onde o carro estiver.</span>
+            <h1 id="hero-title" className="mt-4 text-[32px] font-extrabold leading-[1.04] text-white sm:text-[54px] lg:text-[60px]" data-testid="hero-title">
+              Bateria arriou? A gente instala a nova <span className="text-amber-brand">onde o carro estiver.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300" data-testid="hero-subtitle">
-              Troca de bateria automotiva no Rio de Janeiro. Chegamos em até 30 minutos, com entrega e instalação
-              grátis e parcelamento em até 10x sem juros.
+            <p className="mt-6 hidden max-w-xl text-lg leading-relaxed text-slate-300 sm:block" data-testid="hero-subtitle">
+              Chegamos em até 40 minutos, com <strong className="font-semibold text-white">entrega e instalação grátis</strong> e
+              parcelamento em <strong className="font-semibold text-white">até 10x sem juros</strong>.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <WaButton message={WA_MESSAGES.emergency} testId="hero-whatsapp-button" size="lg">
-                Chamar no WhatsApp agora
-              </WaButton>
-              <Link
-                to="/encontre-sua-bateria"
-                data-testid="hero-finder-button"
-                className="group inline-flex h-14 items-center justify-center gap-2 rounded-md border border-white/25 px-6 font-semibold text-white transition-[border-color,color] duration-200 hover:border-amber-brand hover:text-amber-brand"
-              >
-                Encontrar a bateria do meu carro
-                <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
-              </Link>
+            <div className="mt-6 max-w-xl sm:mt-8">
+              <EmergencyForm />
             </div>
-            <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <LocationButton variant="link" testId="hero-location-button" />
-              <a href={PHONE_TEL} data-testid="hero-call-link" className="inline-flex items-center gap-2 font-mono text-sm text-slate-300 transition-colors hover:text-white">
-                <Phone className="size-4" aria-hidden="true" /> ou ligue {PHONE_DISPLAY}
-              </a>
-            </div>
+            <Link
+              to="/encontre-sua-bateria"
+              data-testid="hero-finder-button"
+              className="group mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-amber-brand"
+            >
+              Não é urgente? Encontre a bateria do seu carro
+              <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+            </Link>
           </div>
 
-          <div className="relative lg:col-span-5">
-            <div className="absolute -right-4 -top-4 hidden h-full w-full bg-amber-brand sm:block lg:-right-6 lg:-top-6" aria-hidden="true" />
+          <figure className="relative lg:col-span-5">
             <img
               src="/img/3.webp"
               alt="Técnico da Express Baterias Rio atendendo um Ford com o capô aberto na rua, com o cartão da empresa em primeiro plano"
               width={1100}
               height={1545}
               fetchPriority="high"
-              className="relative aspect-[4/5] w-full object-cover sm:aspect-[5/6] lg:aspect-[4/5]"
+              className="aspect-[4/5] w-full rounded-sm object-cover sm:aspect-[5/6] lg:aspect-[4/5]"
               data-testid="hero-image"
             />
-            <div className="absolute -bottom-6 left-4 right-4 bg-white p-4 text-navy-900 shadow-[0_20px_40px_-20px_rgb(0_0_0/0.5)] sm:left-auto sm:right-8 sm:w-64">
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">Foto real · atendimento na rua</p>
-              <p className="mt-1 font-heading text-lg font-bold leading-tight">Troca feita no local, sem guincho.</p>
-            </div>
-          </div>
+            <figcaption className="absolute -left-2 bottom-6 bg-amber-brand px-4 py-3 text-navy-900 shadow-[5px_5px_0_#0A1438] sm:-left-4">
+              <span className="block font-heading text-base font-bold leading-tight">Troca feita no local, sem guincho</span>
+              <span className="block text-xs font-medium">Foto real de atendimento</span>
+            </figcaption>
+          </figure>
         </div>
 
-        <div className="relative border-t border-white/10">
-          <div className="relative h-px overflow-hidden" aria-hidden="true">
-            <span className="absolute inset-y-0 left-0 w-1/4 animate-current bg-gradient-to-r from-transparent via-amber-brand to-transparent motion-reduce:hidden" />
-          </div>
+        <div className="border-y border-white/10 bg-navy-800">
           <dl className="mx-auto grid max-w-7xl grid-cols-2 px-5 sm:px-8 lg:grid-cols-4" data-testid="hero-facts">
             {FACTS.map((f, i) => (
               <div key={f.k} className={`py-6 pr-4 ${i % 2 === 1 ? "pl-4 sm:pl-6" : ""} ${i > 0 ? "lg:border-l lg:border-white/10 lg:pl-6" : ""} ${i < 2 ? "border-b border-white/10 lg:border-b-0" : ""}`}>
-                <dt className="font-heading text-xl font-bold text-white sm:text-2xl">{f.k}</dt>
-                <dd className="mt-1 text-sm text-slate-400">{f.v}</dd>
+                <dt className="font-heading text-xl font-bold text-amber-brand sm:text-2xl">{f.k}</dt>
+                <dd className="mt-1 text-sm text-slate-300">{f.v}</dd>
               </div>
             ))}
           </dl>
@@ -148,11 +124,10 @@ export default function Home() {
       </section>
 
       {/* FINDER */}
-      <section id="encontre" className="relative z-10 mx-auto -mt-0 max-w-7xl px-5 py-16 sm:px-8 sm:py-24" aria-labelledby="finder-title">
+      <section id="encontre" className="band-gray relative z-10 mx-auto -mt-0 max-w-7xl px-5 py-16 sm:px-8 sm:py-24" aria-labelledby="finder-title">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Eyebrow>Buscador de bateria</Eyebrow>
-            <h2 id="finder-title" className="mt-4 text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
+            <h2 id="finder-title" className="text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
               Encontre a bateria ideal para seu carro
             </h2>
             <p className="mt-4 leading-relaxed text-slate-600">
@@ -170,12 +145,11 @@ export default function Home() {
       </section>
 
       {/* SERVICES */}
-      <section id="servicos" className="border-t border-border bg-white" aria-labelledby="services-title">
+      <section id="servicos" className="bg-white" aria-labelledby="services-title">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-28">
-              <Eyebrow>Produtos e serviços</Eyebrow>
-              <h2 id="services-title" className="mt-4 text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
+              <h2 id="services-title" className="text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
                 Bateria para carro, moto e caminhão — e quem instala.
               </h2>
               <img
@@ -192,8 +166,7 @@ export default function Home() {
             {SERVICES.map((s, i) => (
               <li key={s.n} className="border-t border-border py-8 first:border-t-0 first:pt-0 lg:first:pt-14" data-testid={`service-item-${i}`}>
                 <Reveal>
-                  <div className="grid gap-4 sm:grid-cols-[64px_1fr]">
-                    <span className="font-mono text-sm text-amber-brand-hover">{s.n}</span>
+                  <div>
                     <div>
                       <h3 className="text-2xl font-bold tracking-tight text-navy-900">{s.title}</h3>
                       <p className="mt-2 max-w-lg leading-relaxed text-slate-600">{s.body}</p>
@@ -218,17 +191,15 @@ export default function Home() {
 
       {/* DIFFERENTIALS */}
       <section className="relative overflow-hidden bg-navy-900 text-white" aria-labelledby="why-title">
-        <div className="bg-wiring absolute inset-0 opacity-60" aria-hidden="true" />
         <div className="relative mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-12">
           <div className="lg:col-span-7">
-            <Eyebrow tone="light">Por que a Express</Eyebrow>
-            <h2 id="why-title" className="mt-4 max-w-2xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl">
+            <h2 id="why-title" className="max-w-2xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl">
               Há 10 anos trocando bateria no Rio, do jeito que o cliente precisa: rápido e no lugar onde ele está.
             </h2>
             <div className="mt-14 grid gap-x-10 gap-y-10 sm:grid-cols-2">
               <Reveal>
                 <h3 className="font-heading text-xl font-semibold text-amber-brand">Chegamos rápido</h3>
-                <p className="mt-2 leading-relaxed text-slate-300">Entrega e instalação em até 30 minutos, no local onde o veículo está.</p>
+                <p className="mt-2 leading-relaxed text-slate-300">Entrega e instalação em até 40 minutos, no local onde o veículo está.</p>
               </Reveal>
               <Reveal delay={0.05}>
                 <h3 className="font-heading text-xl font-semibold text-amber-brand">Garantia de verdade</h3>
@@ -264,25 +235,24 @@ export default function Home() {
       </section>
 
       {/* SERVICE AREA + QUOTE */}
-      <section id="atendimento" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28" aria-labelledby="area-title">
+      <section id="atendimento" className="band-gray mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28" aria-labelledby="area-title">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <Eyebrow>Atendimento</Eyebrow>
-            <h2 id="area-title" className="mt-4 text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
+            <h2 id="area-title" className="text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
               Nós vamos até você.
             </h2>
             <p className="mt-4 leading-relaxed text-slate-600">
-              Atendemos a Zona Sul, o Centro e os bairros próximos. Diga o bairro e o veículo: a equipe responde no WhatsApp com
+              Atendemos a Zona Sul, o Centro e proximidades. Diga o bairro e o veículo: a equipe responde no WhatsApp com
               a bateria, o valor e a previsão de chegada.
             </p>
             <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-2.5 text-[15px] text-navy-900 sm:grid-cols-3 lg:grid-cols-2" data-testid="area-neighborhoods">
               {NEIGHBORHOODS.map((n) => (
                 <li key={n} className="flex items-center gap-2">
-                  <span className="size-1.5 rotate-45 bg-amber-brand" aria-hidden="true" /> {n}
+                  {n}
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-sm text-slate-500">Outro bairro? Consulte pelo WhatsApp.</p>
+            <p className="mt-4 text-sm text-slate-600">Outro bairro? Consulte pelo WhatsApp.</p>
             <StoreDetails className="mt-8" />
             <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" data-testid="area-maps-link" className="mt-8 inline-flex items-center gap-2 font-semibold text-navy-800 hover:text-navy-600">
               <MapPin className="size-4" aria-hidden="true" /> Ver nossa referência no Google Maps
@@ -305,16 +275,15 @@ export default function Home() {
       </section>
 
       {/* REVIEWS */}
-      <section id="avaliacoes" className="border-y border-border bg-secondary/60" aria-labelledby="reviews-title">
+      <section id="avaliacoes" className="bg-white" aria-labelledby="reviews-title">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
           <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <Eyebrow>Avaliações no Google</Eyebrow>
-              <h2 id="reviews-title" className="mt-4 text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
+              <h2 id="reviews-title" className="text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
                 Quem já foi atendido conta como foi.
               </h2>
             </div>
-            <p className="font-mono text-sm text-slate-600" data-testid="reviews-count">
+            <p className="text-sm text-slate-600" data-testid="reviews-count">
               Classificação “Excelente” · <strong className="text-navy-900">453 avaliações</strong>
             </p>
           </div>
@@ -323,11 +292,10 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section id="duvidas" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28" aria-labelledby="faq-title">
+      <section id="duvidas" className="band-gray mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28" aria-labelledby="faq-title">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Eyebrow>Dúvidas frequentes</Eyebrow>
-            <h2 id="faq-title" className="mt-4 text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">Antes de chamar</h2>
+            <h2 id="faq-title" className="text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">Antes de chamar</h2>
             <p className="mt-4 text-slate-600">Não achou sua resposta? Pergunte direto para a equipe.</p>
             <div className="mt-6">
               <WaButton message={WA_MESSAGES.general} testId="faq-whatsapp-button" size="md">Tirar dúvida no WhatsApp</WaButton>

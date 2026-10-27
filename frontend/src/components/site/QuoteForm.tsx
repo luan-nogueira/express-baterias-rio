@@ -169,7 +169,7 @@ export function QuoteForm() {
         )}
         <div className="sm:col-span-2">
           <label htmlFor="quote-message" className="mb-1.5 block text-sm font-medium text-slate-700">
-            Observação <span className="font-normal text-slate-500">(opcional)</span>
+            Observação <span className="font-normal text-slate-600">(opcional)</span>
           </label>
           <textarea id="quote-message" rows={2} maxLength={600} value={form.message} onChange={set("message")} placeholder="Ex.: carro na garagem do prédio, rua tal" className={cn(inputCls, "h-auto border-input py-3")} data-testid="quote-message-input" />
         </div>
@@ -183,7 +183,7 @@ export function QuoteForm() {
         {mutation.isPending ? <Loader2 className="size-5 animate-spin" aria-hidden="true" /> : <SiWhatsapp size={18} aria-hidden="true" />}
         {mutation.isPending ? "Enviando…" : "Enviar e continuar no WhatsApp"}
       </button>
-      <p className="mt-3 text-xs text-slate-500">
+      <p className="mt-3 text-xs text-slate-600">
         Seus dados ficam registrados para a equipe e a conversa abre no WhatsApp já com as informações preenchidas.
       </p>
     </form>

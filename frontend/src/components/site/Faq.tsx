@@ -3,7 +3,7 @@ import { Plus } from "lucide-react";
 const FAQ = [
   {
     q: "Em quanto tempo vocês chegam?",
-    a: "Chegamos em até 30 minutos nas regiões atendidas — Zona Sul e Centro. O tempo exato depende do trânsito e da distância; informamos a previsão quando você chama no WhatsApp.",
+    a: "Chegamos em até 40 minutos nas regiões atendidas: Zona Sul, Centro e proximidades. O tempo exato depende do trânsito e da distância; informamos a previsão quando você chama no WhatsApp.",
   },
   {
     q: "A entrega e a instalação são cobradas?",
