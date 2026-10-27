@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, MapPin, Phone } from "lucide-react";
+import { ArrowRight, ArrowUpRight, MapPin } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { WaButton } from "@/components/site/WaButton";
 import { Reveal } from "@/components/site/Reveal";
@@ -9,8 +9,9 @@ import { QuoteForm } from "@/components/site/QuoteForm";
 import { Reviews } from "@/components/site/Reviews";
 import { Faq } from "@/components/site/Faq";
 import { LocationButton } from "@/components/site/LocationButton";
+import { EmergencyForm } from "@/components/site/EmergencyForm";
 import { StoreDetails } from "@/components/site/StoreDetails";
-import { MAPS_URL, NEIGHBORHOODS, PHONE_DISPLAY, PHONE_TEL, WA_MESSAGES } from "@/lib/contact";
+import { MAPS_URL, NEIGHBORHOODS, WA_MESSAGES } from "@/lib/contact";
 
 const FACTS = [
   { k: "Até 30 min", v: "para chegar até você" },
@@ -67,38 +68,30 @@ export default function Home() {
 
       {/* HERO */}
       <section className="hero-shop bg-navy-900 text-white" aria-labelledby="hero-title">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 pb-14 pt-10 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-10 lg:pb-20 lg:pt-16">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 pb-14 pt-6 sm:px-8 sm:pt-10 lg:grid-cols-12 lg:items-center lg:gap-10 lg:pb-20 lg:pt-16">
           <div className="lg:col-span-7">
             <p className="flex items-center gap-2.5 text-sm font-semibold text-slate-300" data-testid="hero-eyebrow">
               <span className="size-2 rounded-full bg-wa" aria-hidden="true" />
               Atendimento imediato na Zona Sul e no Centro
             </p>
-            <h1 id="hero-title" className="mt-5 text-[38px] font-extrabold leading-[1.04] text-white sm:text-[54px] lg:text-[60px]" data-testid="hero-title">
+            <h1 id="hero-title" className="mt-4 text-[32px] font-extrabold leading-[1.04] text-white sm:text-[54px] lg:text-[60px]" data-testid="hero-title">
               Bateria arriou? A gente instala a nova <span className="text-amber-brand">onde o carro estiver.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300" data-testid="hero-subtitle">
+            <p className="mt-6 hidden max-w-xl text-lg leading-relaxed text-slate-300 sm:block" data-testid="hero-subtitle">
               Chegamos em até 30 minutos, com <strong className="font-semibold text-white">entrega e instalação grátis</strong> e
               parcelamento em <strong className="font-semibold text-white">até 10x sem juros</strong>.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <WaButton message={WA_MESSAGES.emergency} testId="hero-whatsapp-button" size="lg">
-                Chamar no WhatsApp agora
-              </WaButton>
-              <Link
-                to="/encontre-sua-bateria"
-                data-testid="hero-finder-button"
-                className="group inline-flex h-14 items-center justify-center gap-2 rounded-md border-2 border-white px-6 font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-navy-900"
-              >
-                Encontrar a bateria do meu carro
-                <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
-              </Link>
+            <div className="mt-6 max-w-xl sm:mt-8">
+              <EmergencyForm />
             </div>
-            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <LocationButton variant="link" testId="hero-location-button" className="text-white hover:text-amber-brand" />
-              <a href={PHONE_TEL} data-testid="hero-call-link" className="inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-amber-brand">
-                <Phone className="size-4" aria-hidden="true" /> ou ligue {PHONE_DISPLAY}
-              </a>
-            </div>
+            <Link
+              to="/encontre-sua-bateria"
+              data-testid="hero-finder-button"
+              className="group mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-amber-brand"
+            >
+              Não é urgente? Encontre a bateria do seu carro
+              <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+            </Link>
           </div>
 
           <figure className="relative lg:col-span-5">
